@@ -23,9 +23,15 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    
+    # import and call the database configuration
+    from . import db
+
+    db.init_app(app)
+
     # Simple page that say hello
-    @app.route("/hello")
+    @app.route("/test")
     def hello():
-        return "<p>Hello<p>"
+        return "<h2>Hello<h2>"
     
     return app
