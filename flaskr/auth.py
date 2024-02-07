@@ -85,4 +85,24 @@ def load_logged_in_user():
         ).fetchone()
 
 
+
+# LOGOUT CLEANING ALL USER DATA FROM THE SESSION
         
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
+
+# REQUIRE A UTHENTICATION IN OTHER VIEWS 
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        
+        return view(**kwargs)
+
+    return wrapped_view
