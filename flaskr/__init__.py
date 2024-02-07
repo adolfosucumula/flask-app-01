@@ -35,8 +35,13 @@ def create_app(test_config=None):
     from . modules.auth_module import auth
     app.register_blueprint(auth.bp)
 
+    # Import the Blog Blueprint
+    from . modules.blog_module import blog
+    app.register_blueprint(blog.bp)
+    app.add_url_rule('/', endpoint='index')
+
     # Simple page that say hello
-    @app.route("/")
+    @app.route("/test")
     def hello():
         return "<h2>Hello, this a test </h2>"
     
