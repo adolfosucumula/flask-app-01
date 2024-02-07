@@ -51,12 +51,13 @@ def login():
         username = request.form['username']
         password = request.form['password']
         db = get_db()
+        error = None
 
         user = db.execute(
             'SELECT * FROM user WHERE username = ?', (username,)
         ).fetchone()
 
-        if  user  in None:
+        if  user  is None:
             error = 'Incorrect username.'
         elif not check_password_hash(user['password'], password):
             error = 'Incorrect password.'
