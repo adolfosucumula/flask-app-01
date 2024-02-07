@@ -29,9 +29,13 @@ def create_app(test_config=None):
 
     db.init_app(app)
 
+    # Import and call the blueprint
+    from . import auth
+    app.register_blueprint(auth.bp)
+
     # Simple page that say hello
     @app.route("/")
     def hello():
-        return "<h2>Hello this a test</h2>"
+        return "<h2>Hello, this a test </h2>"
     
     return app
