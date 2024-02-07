@@ -30,8 +30,8 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # Simple page that say hello
-    @app.route("/test")
+    @app.route("/")
     def hello():
-        return "<h2>Hello<h2>"
+        return "<h2>Hello this a test</h2>"
     
     return app
