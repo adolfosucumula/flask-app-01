@@ -25,12 +25,14 @@ def create_app(test_config=None):
 
     
     # import and call the database configuration
-    from . import db
+    #from . import db
+    from . config import db
 
     db.init_app(app)
 
     # Import and call the blueprint
-    from . import auth
+    #from . import auth
+    from . modules.auth_module import auth
     app.register_blueprint(auth.bp)
 
     # Simple page that say hello
